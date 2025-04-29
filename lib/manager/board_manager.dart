@@ -50,8 +50,9 @@ class BoardManager extends StateNotifier<Board> {
     int nextIndex = ((index + 1) / 4).ceil() * 4 - (asc ? 4 : 1);
     if (tiles.isNotEmpty) {
       var last = tiles.last;
-      var lastIndex = vert ? verticalOrder[last.index] : last.index;
-      if (_inRange(index, nextIndex)) {
+      var lastIndex = last.nextIndex ?? last.index;
+      lastIndex = vert ? verticalOrder[lastIndex] : last.index;
+      if (_inRange(index, lastIndex)) {
         nextIndex = lastIndex + (asc ? 1 : -1);
       }
     }
@@ -64,13 +65,14 @@ class BoardManager extends StateNotifier<Board> {
         direction == SwipeDirection.left || direction == SwipeDirection.up;
     bool vert =
         direction == SwipeDirection.up || direction == SwipeDirection.down;
+
     state.tiles.sort(((a, b) =>
         (asc ? 1 : -1) *
         (vert
             ? verticalOrder[a.index].compareTo(verticalOrder[b.index])
             : a.index.compareTo(b.index))));
     List<Tile> tiles = [];
-    for (int i = 0, l = state.tiles.length; i < 1; i++) {
+    for (int i = 0, l = state.tiles.length; i < l; i++) {
       var tile = state.tiles[i];
       tile = _calculate(tile, tiles, direction);
       tiles.add(tile);
@@ -80,7 +82,7 @@ class BoardManager extends StateNotifier<Board> {
           var index = vert ? verticalOrder[tile.index] : tile.index,
               nextIndex = vert ? verticalOrder[next.index] : next.index;
           if (_inRange(index, nextIndex)) {
-            tiles.add(next.copyWith(nextIndex: tile.index));
+            tiles.add(next.copyWith(nextIndex: tile.nextIndex));
             i += 1;
             continue;
           }
@@ -123,7 +125,7 @@ class BoardManager extends StateNotifier<Board> {
       }
       tiles.add(tile.copyWith(
           value: value,
-          nextIndex: tile.nextIndex,
+          nextIndex: null,
           merged: merged,
           index: tile.nextIndex ?? tile.index));
       indexes.add(tiles.last.index);
