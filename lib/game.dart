@@ -61,63 +61,65 @@ class _GameState extends ConsumerState<Game>
             },
             child: Scaffold(
               backgroundColor: backgroundColor,
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        '2048 Game',
-                        style: TextStyle(
-                            color: textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 52),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          ScoreBoard(),
-                          const SizedBox(
-                            height: 32.0,
-                          ),
-                          Row(
-                            children: [
-                              ButtonWidget(
-                                onPressed: () {
-                                  ref.read(boardManager.notifier).undo();
-                                },
-                                icon: Icons.undo,
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              ButtonWidget(
-                                onPressed: () {
-                                  ref.read(boardManager.notifier).newGame();
-                                },
-                                icon: Icons.refresh,
-                              )
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  Stack(
-                    children: [
-                      const EmptyBoard(),
-                      TileBoard(
-                          moveAnimation: _moveAnimation,
-                          scaleAnimation: _scaleAnimation)
-                    ],
-                  )
-                ],
+              body: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          '2048 Game',
+                          style: TextStyle(
+                              color: textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 52),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ScoreBoard(),
+                            const SizedBox(
+                              height: 32.0,
+                            ),
+                            Row(
+                              children: [
+                                ButtonWidget(
+                                  onPressed: () {
+                                    ref.read(boardManager.notifier).undo();
+                                  },
+                                  icon: Icons.undo,
+                                ),
+                                const SizedBox(
+                                  width: 16,
+                                ),
+                                ButtonWidget(
+                                  onPressed: () {
+                                    ref.read(boardManager.notifier).newGame();
+                                  },
+                                  icon: Icons.refresh,
+                                )
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Stack(
+                      children: [
+                        const EmptyBoard(),
+                        TileBoard(
+                            moveAnimation: _moveAnimation,
+                            scaleAnimation: _scaleAnimation)
+                      ],
+                    )
+                  ],
+                ),
               ),
             )));
   }
