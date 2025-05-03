@@ -33,7 +33,7 @@ class TileBoard extends ConsumerWidget {
             var tile = board.tiles[i];
             return AnimatedTile(
                 key: ValueKey(tile.id),
-                tileSize,
+                size: tileSize,
                 tile: tile,
                 moveAnimation: moveAnimation,
                 scaleAnimation: scaleAnimation,

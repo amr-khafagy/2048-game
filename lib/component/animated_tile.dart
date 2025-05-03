@@ -11,8 +11,9 @@ class AnimatedTile extends AnimatedWidget {
   late final double _left = tile.getLeft(size);
   late final double _nextTop = tile.getNextTop(size) ?? _top;
   late final double _nextLeft = tile.getNextLeft(size) ?? _left;
-  AnimatedTile(this.size,
+  AnimatedTile(
       {super.key,
+      required this.size,
       required this.tile,
       required this.child,
       required this.moveAnimation,
