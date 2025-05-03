@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
-import 'package:game/component/button_widget.dart';
 import 'package:game/component/empty_board.dart';
 import 'package:game/component/score_board.dart';
 import 'package:game/component/tile_board.dart';
@@ -84,25 +83,25 @@ class _GameState extends ConsumerState<Game>
                             const SizedBox(
                               height: 32.0,
                             ),
-                            Row(
-                              children: [
-                                ButtonWidget(
-                                  onPressed: () {
-                                    ref.read(boardManager.notifier).undo();
-                                  },
-                                  icon: Icons.undo,
-                                ),
-                                const SizedBox(
-                                  width: 16,
-                                ),
-                                ButtonWidget(
-                                  onPressed: () {
-                                    ref.read(boardManager.notifier).newGame();
-                                  },
-                                  icon: Icons.refresh,
-                                )
-                              ],
-                            ),
+                            // Row(
+                            //   children: [
+                            //     ButtonWidget(
+                            //       onPressed: () {
+                            //         ref.read(boardManager.notifier).undo();
+                            //       },
+                            //       icon: Icons.undo,
+                            //     ),
+                            //     const SizedBox(
+                            //       width: 16,
+                            //     ),
+                            //     // ButtonWidget(
+                            //     //   onPressed: () {
+                            //     //     ref.read(boardManager.notifier).newGame();
+                            //     //   },
+                            //     //   icon: Icons.refresh,
+                            //     // )
+                            //   ],
+                            // ),
                           ],
                         )
                       ],

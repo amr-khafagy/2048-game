@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:game/game.dart';
 import 'package:game/models/board_adapter.dart';
+import 'package:game/splash_screen.dart';
 import 'package:hive/hive.dart';
 
 void main() async {
@@ -13,7 +14,7 @@ void main() async {
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '2048',
-      home: Game(),
+      home: SplashScreen(),
     ),
   ));
 }

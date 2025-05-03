@@ -16,11 +16,12 @@ class ScoreBoard extends ConsumerWidget {
         Score(
           label: 'score',
           score: score.toString(),
+          // padding: EdgeInsets.symmetric(horizontal: 16),
         ),
         const SizedBox(
           width: 10,
         ),
-        Score(label: 'High Score', score: highScore.toString())
+        // Score(label: 'High Score', score: highScore.toString())
       ],
     );
   }
@@ -36,19 +37,23 @@ class Score extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 200,
+      height: 100,
       padding:
-          padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding ?? const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
       decoration: BoxDecoration(
           color: scoreColor, borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
           Text(
             label,
-            style: const TextStyle(fontSize: 15, color: color2),
+            style: const TextStyle(
+                fontSize: 30, color: color2, fontWeight: FontWeight.bold),
           ),
           Text(
             score.toString(),
-            style: const TextStyle(fontSize: 15, color: color2),
+            style: const TextStyle(
+                fontSize: 30, color: color2, fontWeight: FontWeight.bold),
           )
         ],
       ),
