@@ -7,6 +7,7 @@ import 'package:game/component/animated_tile.dart';
 import 'package:game/component/button_widget.dart';
 import 'package:game/const/colors.dart';
 import 'package:game/manager/board_manager.dart';
+import 'package:lottie/lottie.dart';
 
 class TileBoard extends ConsumerWidget {
   final CurvedAnimation moveAnimation;
@@ -60,6 +61,13 @@ class TileBoard extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  if (board.isGameWon)
+                    Lottie.asset(
+                      'assets/clebration.json', // Ensure the path matches your pubspec.yaml
+                      width: 200,
+                      height: 150,
+                      repeat: true,
+                    ),
                   Text(
                     board.isGameWon ? 'You win!' : 'Game over!',
                     style: const TextStyle(
