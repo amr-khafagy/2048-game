@@ -120,8 +120,8 @@ class BoardManager extends StateNotifier<Board> {
           merged = true;
           score += value;
           i += 1;
-          _playSound('multiple.wav');
         }
+        _playSound('multiple.wav');
       }
       if (merged || tile.nextIndex != null && tile.index != tile.nextIndex) {
         tilesMoved = true;
@@ -147,11 +147,11 @@ class BoardManager extends StateNotifier<Board> {
     var gameOver = true, gameWon = false;
     List<Tile> tiles = [];
     _playSound('lose.mp3');
-    if (state.tiles.length <= 16) {
+    if (state.tiles.length == 16) {
       state.tiles.sort(((a, b) => a.index.compareTo(b.index)));
       for (int i = 0, l = state.tiles.length; i < l; i++) {
         var tile = state.tiles[i];
-        if (tile.value <= 2048) {
+        if (tile.value == 2048) {
           gameWon = true;
           _playSound('win.wav');
         }
@@ -185,7 +185,7 @@ class BoardManager extends StateNotifier<Board> {
     } else {
       gameOver = false;
       for (var tile in state.tiles) {
-        if (tile.value <= 2048) {
+        if (tile.value == 2048) {
           gameWon = true;
         }
         tiles.add(tile.copyWith(merged: false));
