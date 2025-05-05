@@ -25,6 +25,7 @@ class TileBoard extends ConsumerWidget {
     final sizePerTile = (size / 4).floorToDouble();
     final tileSize = sizePerTile - 12.0 - (12.0 / 4);
     final boarSize = sizePerTile * 4;
+
     return SizedBox(
       width: boarSize,
       height: boarSize,

@@ -10,10 +10,12 @@ import 'package:game/models/board.dart';
 import 'package:game/models/tile.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
+import 'package:audioplayers/audioplayers.dart'; // Import audioplayers
 
 class BoardManager extends StateNotifier<Board> {
   final verticalOrder = [12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3];
   final StateNotifierProviderRef ref;
+  final AudioPlayer _audioPlayer = AudioPlayer();
   BoardManager(this.ref) : super(Board.newGame(0, [])) {
     load();
   }
@@ -118,6 +120,7 @@ class BoardManager extends StateNotifier<Board> {
           merged = true;
           score += value;
           i += 1;
+          _playSound('multiple.wav');
         }
       }
       if (merged || tile.nextIndex != null && tile.index != tile.nextIndex) {
@@ -136,15 +139,21 @@ class BoardManager extends StateNotifier<Board> {
     state = state.copyWith(score: score, tiles: tiles);
   }
 
+  Future<void> _playSound(String soundPath) async {
+    await _audioPlayer.play(AssetSource(soundPath));
+  }
+
   void _endRound() {
     var gameOver = true, gameWon = false;
     List<Tile> tiles = [];
-    if (state.tiles.length == 16) {
+    _playSound('lose.mp3');
+    if (state.tiles.length <= 16) {
       state.tiles.sort(((a, b) => a.index.compareTo(b.index)));
       for (int i = 0, l = state.tiles.length; i < l; i++) {
         var tile = state.tiles[i];
-        if (tile.value == 2048) {
+        if (tile.value <= 2048) {
           gameWon = true;
+          _playSound('win.wav');
         }
         var x = (i - (((i + 1) / 4).ceil() * 4 - 4));
         if (x > 0 && i - 1 >= 0) {
@@ -176,7 +185,7 @@ class BoardManager extends StateNotifier<Board> {
     } else {
       gameOver = false;
       for (var tile in state.tiles) {
-        if (tile.value == 2048) {
+        if (tile.value <= 2048) {
           gameWon = true;
         }
         tiles.add(tile.copyWith(merged: false));
