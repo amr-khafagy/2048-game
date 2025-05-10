@@ -59,52 +59,56 @@ class _GameState extends ConsumerState<Game>
               }
             },
             child: Scaffold(
-              backgroundColor: backgroundColor,
+              backgroundColor: Color(0xffeee3d2),
               body: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          '2048 Game',
-                          style: TextStyle(
-                              color: textColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 52),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            ScoreBoard(),
-                            const SizedBox(
-                              height: 32.0,
-                            ),
-                            // Row(
-                            //   children: [
-                            //     ButtonWidget(
-                            //       onPressed: () {
-                            //         ref.read(boardManager.notifier).undo();
-                            //       },
-                            //       icon: Icons.undo,
-                            //     ),
-                            //     const SizedBox(
-                            //       width: 16,
-                            //     ),
-                            //     // ButtonWidget(
-                            //     //   onPressed: () {
-                            //     //     ref.read(boardManager.notifier).newGame();
-                            //     //   },
-                            //     //   icon: Icons.refresh,
-                            //     // )
-                            //   ],
-                            // ),
-                          ],
-                        )
-                      ],
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 40, right: 20, left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            '2048',
+                            style: TextStyle(
+                                color: Color(0xff645544),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 52),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              ScoreBoard(),
+                              const SizedBox(
+                                height: 32.0,
+                              ),
+                              // Row(
+                              //   children: [
+                              //     ButtonWidget(
+                              //       onPressed: () {
+                              //         ref.read(boardManager.notifier).undo();
+                              //       },
+                              //       icon: Icons.undo,
+                              //     ),
+                              //     const SizedBox(
+                              //       width: 16,
+                              //     ),
+                              //     // ButtonWidget(
+                              //     //   onPressed: () {
+                              //     //     ref.read(boardManager.notifier).newGame();
+                              //     //   },
+                              //     //   icon: Icons.refresh,
+                              //     // )
+                              //   ],
+                              // ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 32,

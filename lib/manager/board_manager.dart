@@ -24,6 +24,10 @@ class BoardManager extends StateNotifier<Board> {
     state = box.get(0) ?? _newGame();
   }
 
+  Future<void> _playSound(String soundPath) async {
+    await _audioPlayer.play(AssetSource(soundPath));
+  }
+
   int maxScore() {
     return state.score > state.highScore ? state.score : state.highScore;
   }
@@ -121,10 +125,10 @@ class BoardManager extends StateNotifier<Board> {
           score += value;
           i += 1;
         }
-        _playSound('multiple.wav');
       }
       if (merged || tile.nextIndex != null && tile.index != tile.nextIndex) {
         tilesMoved = true;
+        _playSound('multiple.wav');
       }
       tiles.add(tile.copyWith(
           value: value,
@@ -139,14 +143,9 @@ class BoardManager extends StateNotifier<Board> {
     state = state.copyWith(score: score, tiles: tiles);
   }
 
-  Future<void> _playSound(String soundPath) async {
-    await _audioPlayer.play(AssetSource(soundPath));
-  }
-
   void _endRound() {
     var gameOver = true, gameWon = false;
     List<Tile> tiles = [];
-    _playSound('lose.mp3');
     if (state.tiles.length == 16) {
       state.tiles.sort(((a, b) => a.index.compareTo(b.index)));
       for (int i = 0, l = state.tiles.length; i < l; i++) {

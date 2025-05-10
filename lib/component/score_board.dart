@@ -37,7 +37,7 @@ class Score extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: 100,
       height: 100,
       padding:
           padding ?? const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
@@ -48,12 +48,16 @@ class Score extends StatelessWidget {
           Text(
             label,
             style: const TextStyle(
-                fontSize: 30, color: color2, fontWeight: FontWeight.bold),
+                fontSize: 30,
+                color: Color(0xff5d4c39),
+                fontWeight: FontWeight.bold),
           ),
           Text(
             score.toString(),
             style: const TextStyle(
-                fontSize: 30, color: color2, fontWeight: FontWeight.bold),
+                fontSize: 30,
+                color: Color(0xff5d4c39),
+                fontWeight: FontWeight.bold),
           )
         ],
       ),
