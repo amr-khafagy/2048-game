@@ -1,16 +1,44 @@
-# game
+# 2048 Game
 
-A new Flutter project.
+A Flutter implementation of the classic 2048 puzzle game, built with responsive controls, tile animations, and local game-state persistence.
+
+## Highlights
+
+- Swipe controls for mobile and keyboard controls for desktop.
+- Animated tile movement and merge interactions.
+- Score tracking during gameplay.
+- Local persistence for the board state using Hive.
+- Portrait-oriented mobile experience with a dedicated splash and menu flow.
+
+## Tech Stack
+
+- **Framework:** Flutter
+- **State Management:** Riverpod
+- **Local Storage:** Hive
+- **Input:** `flutter_swipe_detector` and keyboard events
+- **Animations:** Flutter animation controllers and curved animations
+- **Code Generation:** `build_runner` and `json_serializable`
+
+## Project Structure
+
+```text
+lib/
+├── component/   # Board, tile, score, and reusable UI components
+├── manager/     # Game-round, direction, and board state logic
+├── models/      # Board and tile models with Hive serialization
+├── game.dart    # Game screen and animations
+├── menu_screen.dart
+├── setting_screen.dart
+└── splash_screen.dart
+```
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Author
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Built by [Amr Khafagy](https://github.com/amr-khafagy), Flutter Developer and Mobile Application Engineer.
